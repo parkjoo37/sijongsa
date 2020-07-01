@@ -1,0 +1,22 @@
+#header {
+  font-family: 'Gugi', cursive;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+#header__title a {
+  text-decoration: none;
+  color: black;
+  font-size: 50px;
+}
+#header__menu {
+  text-align: right;
+}
+#header__menu a {
+  text-decoration: none;
+  color: black;
+  padding: 8px 6px;
+}
+#header__menu a:hover {
+  color: gray;
+}
