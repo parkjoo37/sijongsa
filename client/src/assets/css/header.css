@@ -4,7 +4,7 @@
   padding-bottom: 40px;
 }
 #header__title a {
-  font-family: 'Gugi', cursive;
+  font-family: 'Notable', sans-serif;
   text-decoration: none;
   color: black;
   font-size: 50px;
@@ -13,7 +13,7 @@
   text-align: right;
 }
 #header__menu a {
-  font-family: 'Sunflower', sans-serif;
+  font-family: 'Gothic A1', sans-serif;
   text-decoration: none;
   color: black;
   padding: 8px 6px;

@@ -4,7 +4,7 @@
       <v-flex xs3>
       </v-flex>
       <v-flex id="header__title" xs6>
-        <h1><a href="/">시종사.</a></h1>
+        <h1><a href="/">SiJong.</a></h1>
       </v-flex>
       <v-flex id="header__menu" xs3>
         <!-- <a :href="item.path" v-for="item in items" :key="item">{{ item.title }}</a> -->
