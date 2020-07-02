@@ -11,7 +11,9 @@
         <v-text-field v-model="email" :rules="[rules.required, rules.email]" label="Email"></v-text-field>
         <v-text-field v-model="password" :rules="[rules.required]" label="password" counter max="15"></v-text-field>
         <v-btn id="login__btn" block>로그인</v-btn>
-        <v-btn id="signup__btn" block>회원가입</v-btn>
+        <router-link to="/signup">
+          <v-btn id="signup__btn" block>회원가입</v-btn>
+        </router-link>
         <div id="find__id__password">
           <a href="#" id="find__id">아이디 찾기</a>
           |
