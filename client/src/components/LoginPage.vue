@@ -9,8 +9,8 @@
     <v-layout row wrap justify-center id="input__info">
       <v-flex xs6>
         <v-text-field v-model="email" :rules="[rules.required, rules.email]" label="Email"></v-text-field>
-        <v-text-field v-model="password" :rules="[rules.required]" label="password" counter max="15"></v-text-field>
-        <v-btn id="login__btn" block>로그인</v-btn>
+        <v-text-field type="password" v-model="password" :rules="[rules.required]" label="password" counter max="15"></v-text-field>
+        <v-btn @click="base_login" id="login__btn" block>로그인</v-btn>
         <router-link to="/signup">
           <v-btn id="signup__btn" block>회원가입</v-btn>
         </router-link>
@@ -46,11 +46,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
       email: '',
       password: '',
+      token: null,
       rules: {
         required: (value) => !!value || '입력해주세요.',
         email: (value) => {
@@ -58,6 +61,19 @@ export default {
           return pattern.test(value) || '이메일을 입력해주세요.'
         }
       }
+    }
+  },
+  methods: {
+    base_login() {
+      axios.post('http://localhost:8000/members/login/',
+      { email: this.email, password: this.password }
+    )
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
     }
   }
 }
