@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
-    'restapi'
+    'member'
 ]
 
 REST_FRAMEWORK = {
@@ -81,6 +81,8 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'member.Member'
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
