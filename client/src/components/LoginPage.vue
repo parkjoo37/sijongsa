@@ -47,6 +47,7 @@
 
 <script>
 import axios from 'axios'
+// import Cookies from 'js-cookie'
 
 export default {
   data() {
@@ -67,6 +68,7 @@ export default {
     base_login() {
       axios.post('http://localhost:8000/members/login/',
       { email: this.email, password: this.password }
+      // { 'Content-Type': 'application/x-www-form-urlencoded' }
     )
     .then((res) => {
       console.log(res.data);
