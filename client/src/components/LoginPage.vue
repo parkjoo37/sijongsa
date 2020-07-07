@@ -66,12 +66,18 @@ export default {
   },
   methods: {
     base_login() {
-      axios.post('http://localhost:8000/members/login/',
-      { email: this.email, password: this.password }
-      // { 'Content-Type': 'application/x-www-form-urlencoded' }
-    )
+      let form = new FormData()
+      form.append('email', this.email)
+      form.append('password', this.password)
+
+      axios.post('http://localhost:8000/members/login/', form)
+      // {'Content-Type': 'application/json'}
     .then((res) => {
-      console.log(res.data);
+      if(res.data.url != 'fail') {
+        this.$router.push('/');
+      } else {
+        alert('정보가 일치하지 않습니다.');
+      }
     })
     .catch((err) => {
       console.log(err);
