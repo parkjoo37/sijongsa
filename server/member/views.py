@@ -5,13 +5,14 @@ from .serializer import MemberSerializer
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.contrib.auth.hashers import check_password
-# from django.contrib.auth.hashers import check_password
+# from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 class MemberViewSet(viewsets.ModelViewSet):
     queryset = Member.objects.all()
     serializer_class = MemberSerializer
 
+    # @csrf_exempt
     @action(detail=False, methods=['post'])
     def login(self, request):
         email = self.request.POST['email']
@@ -30,6 +31,8 @@ class MemberViewSet(viewsets.ModelViewSet):
                 serializer = self.get_serializer(find_account, many=True)
                 print(serializer.data[0]['url'])
                 return Response({ 'url': serializer.data[0]['url'] })
+            else:
+                return Response({ 'url': 'fail' })
 
 
         # oldPassword = self.queryset[0].password
