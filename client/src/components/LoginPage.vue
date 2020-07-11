@@ -10,8 +10,9 @@
       <v-flex xs6>
         <v-text-field v-model="email" :rules="[rules.required, rules.email]" label="Email"></v-text-field>
         <v-text-field type="password" v-model="password" :rules="[rules.required]" label="password" counter max="15"></v-text-field>
-        <v-btn @click="base_login" id="login__btn" block>로그인</v-btn>
-        <router-link to="/signup">
+        <!-- <v-btn @click="base_login" id="login__btn" block>로그인</v-btn> -->
+        <v-btn @click="login({email, password})" id="login__btn" block>로그인</v-btn>
+        <router-link :to="{name: 'signup'}">
           <v-btn id="signup__btn" block>회원가입</v-btn>
         </router-link>
         <div id="find__id__password">
@@ -46,45 +47,70 @@
 </template>
 
 <script>
-import axios from 'axios'
-// import Cookies from 'js-cookie'
+  // import axios from 'axios'
 
-export default {
-  data() {
-    return {
-      email: '',
-      password: '',
-      token: null,
-      rules: {
-        required: (value) => !!value || '입력해주세요.',
-        email: (value) => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || '이메일을 입력해주세요.'
+  // export default {
+  //   data() {
+  //     return {
+  //       email: '',
+  //       password: '',
+  //       token: null,
+  //       rules: {
+  //         required: (value) => !!value || '입력해주세요.',
+  //         email: (value) => {
+  //           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  //           return pattern.test(value) || '이메일을 입력해주세요.'
+  //         }
+  //       }
+  //     }
+  //   },
+  //   methods: {
+  //     base_login() {
+  //       let form = new FormData()
+  //       form.append('email', this.email)
+  //       form.append('password', this.password)
+  //
+  //       axios.post('http://localhost:8000/rest-auth/login/', form)
+  //       .then((res) => {
+  //         console.log(res);
+  //         // if(res.data.url != 'fail') {
+  //         //   this.$router.push('/');
+  //         // } else {
+  //         //   alert('정보가 일치하지 않습니다.');
+  //         // }
+  //       })
+  //       .catch((err) => {
+  //         console.log(err);
+  //       })
+  //     }
+  //   }
+  // };
+
+
+
+  import { mapState, mapActions } from 'vuex';
+
+  export default {
+    data() {
+      return {
+        email: null,
+        password: null,
+        rules: {
+          required: (value) => !!value || '입력해주세요.',
+          email: (value) => {
+            const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            return pattern.test(value) || '이메일을 입력해주세요.'
+          }
         }
-      }
+      };
+    },
+    computed: {
+      ...mapState(['isLogin', 'isLoginError'])
+    },
+    methods: {
+      ...mapActions(['login'])
     }
-  },
-  methods: {
-    base_login() {
-      let form = new FormData()
-      form.append('email', this.email)
-      form.append('password', this.password)
-
-      axios.post('http://localhost:8000/members/login/', form)
-      // {'Content-Type': 'application/json'}
-    .then((res) => {
-      if(res.data.url != 'fail') {
-        this.$router.push('/');
-      } else {
-        alert('정보가 일치하지 않습니다.');
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    }
-  }
-}
+  };
 </script>
 
 <style lang="css" src="../assets/css/login.css" scoped>
