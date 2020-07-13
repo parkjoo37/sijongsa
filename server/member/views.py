@@ -6,6 +6,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from django.contrib.auth.hashers import check_password
 from rest_auth.registration.views import RegisterView
+# from rest_framework.views import APIView
+# from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 class MemberViewSet(viewsets.ModelViewSet):
@@ -38,3 +40,9 @@ class MemberViewSet(viewsets.ModelViewSet):
 
 class MemberRegisterViewSet(RegisterView):
     serializer_class = MemberRegisterSerializer
+
+# class CurrentUserAPIView(APIView):
+#     permission_classes = (IsAuthenticated,)
+#     def get(self, request):
+#         serializer = MemberSerializer(request.user)
+#         return Response(serializer.data)

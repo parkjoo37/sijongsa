@@ -70,7 +70,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
         # 'rest_framework.permissions.AllowAny'
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAuthenticated'
     ]
 }
 
@@ -113,7 +113,6 @@ CORS_ALLOW_HEADERS = (
     'access-control-request-method',
     'access-control-request-headers',
     'access-token',
-    # 'authorization',
     'content-type',
     'dnt',
     'origin',

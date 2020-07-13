@@ -2,7 +2,7 @@ from rest_framework import serializers
 from .models import Member
 from rest_auth.registration.serializers import RegisterSerializer
 
-class MemberSerializer(serializers.HyperlinkedModelSerializer):
+class MemberSerializer(serializers.ModelSerializer):
     class Meta:
         model = Member
         fields = '__all__'

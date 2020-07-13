@@ -19,5 +19,7 @@ urlpatterns = [
 
     path('rest-auth/obtain_token/', obtain_jwt_token, name = 'obtain-jwt'),
     path('rest-auth/refresh_token/', refresh_jwt_token, name = 'refresh-jwt'),
-    path('rest-auth/verify_token/', verify_jwt_token, name = 'verify-jwt')
+    path('rest-auth/verify_token/', verify_jwt_token, name = 'verify-jwt'),
+
+    # path('user1/', CurrentUserAPIView.as_view(), name='current-user')
 ]

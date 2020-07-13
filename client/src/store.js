@@ -35,8 +35,8 @@ export default new Vuex.Store({
           let token = res.data.token;
           localStorage.setItem('access_token', token);
           this.dispatch('getMemberInfo');
-          router.push({name: 'home'})
-          console.log(res.data.token);
+          router.push({name: 'home'});
+          console.log(res);
         })
         .catch(() => {
           alert('이메일과 비밀번호를 확인하세요.');
@@ -61,26 +61,28 @@ export default new Vuex.Store({
       let token = localStorage.getItem('access_token');
       let config = {
         // headers: {
-        //   'access-token': token,
+        //   "access-token": token
         // }
         headers: {
           'Authorization': 'JWT ' + token,
         }
       };
+
       axios.get('http://127.0.0.1:8000/rest-auth/user/', config)
         .then(response => {
           let userInfo = {
-            url: response.data.data.url,
-            email: response.data.data.email,
-            username: response.data.data.username,
-            age: response.data.data.age,
-            gender: response.data.data.gender,
-            address: response.data.data.address
+            id: response.data.id,
+            email: response.data.email,
+            username: response.data.username,
+            age: response.data.age,
+            gender: response.data.gender,
+            address: response.data.address
           };
-          commit('loginSuccess', userInfo);
+          alert('로그인 성공!!');
+          commit("loginSuccess", userInfo);
         })
         .catch(() => {
-          // alert('dd이메일과 비밀번호를 확인하세요.');
+          alert('dd이메일과 비밀번호를 확인하세요.');
         });
     }
   },
