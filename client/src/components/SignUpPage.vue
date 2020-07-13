@@ -85,7 +85,47 @@
           </v-layout>
         </v-stepper-content>
         <v-stepper-content step="3">
-          <v-btn color="black" @click.native="e1 = 4">가입하기</v-btn>
+          <v-layout row wrap id="signup__input">
+            <v-flex xs3></v-flex>
+            <v-flex xs6>
+              <div id="email__input">
+                <i class="fas fa-envelope"></i>
+                <v-text-field label="이메일" :rules="emailRules" v-model="email" required></v-text-field>
+              </div>
+              <div id="password1__input">
+                <i class="fas fa-pager"></i>
+                <v-text-field label="비밀번호" :rules="password1Rules" v-model="password1" required></v-text-field>
+              </div>
+              <div id="password2__input">
+                <i class="fas fa-pager"></i>
+                <v-text-field label="재확인" :rules="password2Rules" v-model="password2" required></v-text-field>
+              </div>
+              <div id="name__input">
+                <i class="fas fa-signature"></i>
+                <v-text-field label="이름" :rules="nameRules" v-model="username" required></v-text-field>
+              </div>
+              <div id="age__input">
+                <i class="fas fa-pager"></i>
+                <v-text-field label="나이" :rules="ageRules" v-model="age" required></v-text-field>
+              </div>
+              <div id="gender__input">
+                <i class="fas fa-pager"></i>
+                <v-text-field label="성별" :rules="gendereRules" v-model="gender" required></v-text-field>
+              </div>
+              <div id="address__input">
+                <i class="fas fa-pager"></i>
+                <v-text-field label="주소" :rules="addressRules" v-model="address" required></v-text-field>
+              </div>
+            </v-flex>
+          </v-layout>
+          <v-layout row wrap justify-center>
+            <v-flex xs4></v-flex>
+            <v-flex xs4 id="signup__next__btn">
+              <!-- <v-btn dark @click.native="e1 = 4" large block>가입하기</v-btn> -->
+              <v-btn dark @click="signup({email, password1, password2, username, age, gender, address})" large block>가입하기</v-btn>
+            </v-flex>
+            <v-flex xs4></v-flex>
+          </v-layout>
         </v-stepper-content>
         <v-stepper-content step="4">
           <v-btn color="black" @click.native="e1 = 1">처음으로</v-btn>
@@ -96,13 +136,25 @@
 </template>
 
 <script>
+import {  mapActions } from 'vuex';
+
 export default {
   data() {
     return {
-      e1: 1
+      e1: 1,
+      email: null,
+      password1: null,
+      password2: null,
+      username: null,
+      age: null,
+      gender: null,
+      address: null
     }
+  },
+  methods: {
+    ...mapActions(['signup'])
   }
-}
+};
 </script>
 
 <style lang="css" src="../assets/css/signup.css" scoped>

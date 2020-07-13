@@ -8,7 +8,8 @@
       </v-flex>
       <v-flex id="header__menu" xs3>
         <!-- <a :href="item.path" v-for="item in items" :key="item">{{ item.title }}</a> -->
-        <a href="/login"><small>로그인</small></a>
+        <a href="/logout" v-if="isLogin"><small>로그아웃</small></a>
+        <a href="/login" v-else><small>로그인</small></a>
         |
         <a href="#"><small>장바구니</small></a>
         |
@@ -32,6 +33,11 @@ export default {
   //     ]
   //   };
   // }
+  data() {
+    return {
+      isLogin: this.$store.state.isLogin
+    }
+  }
 }
 </script>
 

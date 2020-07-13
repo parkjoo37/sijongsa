@@ -12,7 +12,15 @@
   border-bottom: thin solid #bdbdbd;
   padding-bottom: 20px;
 }
-#phone__verification, #agree__next__btn {
+#phone__verification, #agree__next__btn, #signup__next__btn {
   text-align: center;
   margin-top: 30px;
+}
+#email__input, #password1__input, #password2__input, #name__input, #age__input, #gender__input, #address__input {
+  display: flex;
+}
+#email__input i, #password1__input i, #password2__input i, #name__input i, #age__input i, #gender__input i, #address__input i {
+  font-size: 30px;
+  padding-top: 20px;
+  padding-right: 15px;
 }
