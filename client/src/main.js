@@ -36,5 +36,11 @@ new Vue({
   vuetify,
   router,
   store,
+  beforeCreate() {
+    console.log(localStorage.getItem('access_token').length)
+    if (localStorage.getItem('access_token').length !== 0) {
+      this.$store.dispatch('getMemberInfo')
+    }
+  },
   render: h => h(App)
 }).$mount('#app')

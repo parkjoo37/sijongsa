@@ -1,27 +1,32 @@
 <template lang="html">
   <v-container id="header">
     <v-layout wrap row>
-      <v-flex xs3>
+      <v-flex lg3 xs3>
       </v-flex>
-      <v-flex id="header__title" xs6>
+      <v-flex id="header__title" lg6 xs6>
         <h1><a href="/">SiJong.</a></h1>
       </v-flex>
-      <v-flex id="header__menu" xs3>
-        <!-- <a :href="item.path" v-for="item in items" :key="item">{{ item.title }}</a> -->
-        <a href="/logout" v-if="isLogin"><small>로그아웃</small></a>
-        <a href="/login" v-else><small>로그인</small></a>
-        |
-        <a href="#"><small>장바구니</small></a>
-        |
-        <a href="#"><small>마이페이지</small></a>
-        |
-        <a href="#"><small>공지사항</small></a>
+      <v-flex id="header__menu" lg3 xs3>
+        <!-- <a id="menu__bar"><i class="fas fa-bars"></i></a> -->
+        <ul id="header__nav">
+          <!-- <a :href="item.path" v-for="item in items" :key="item">{{ item.title }}</a> -->
+          <li v-if="isLogin"><a @click="logout()"><small>로그아웃</small></a></li>
+          <li v-else><a href="/login"><small>로그인</small></a></li>
+          |
+          <li><a href="#"><small>장바구니</small></a></li>
+          |
+          <li><a href="#"><small>마이페이지</small></a></li>
+          |
+          <li><a href="#"><small>공지사항</small></a></li>
+        </ul>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex';
+
 export default {
   // data() {
   //   return {
@@ -35,10 +40,16 @@ export default {
   // }
   data() {
     return {
-      isLogin: this.$store.state.isLogin
+      // isLogin: this.$store.state.isLogin
     }
+  },
+  computed: {
+    ...mapState(['isLogin', 'isLoginError'])
+  },
+  methods: {
+    ...mapActions(['logout'])
   }
-}
+};
 </script>
 
 <style lang="css" src="../assets/css/header.css" scoped>
