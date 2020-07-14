@@ -16,9 +16,16 @@
   font-family: 'Gothic A1', sans-serif;
   text-decoration: none;
   color: black;
-  padding: 8px 6px;
+  padding: 8px 3px;
   line-height: 70px;
 }
 #header__menu a:hover {
   color: gray;
+}
+#header__nav {
+  display: inline;
+}
+#header__nav li {
+  list-style: none;
+  display: inline;
 }

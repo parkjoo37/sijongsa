@@ -43,8 +43,17 @@ export default new Vuex.Store({
         });
     },
     logout({commit}) {
-      commit('logout');
-      router.push({name: 'home'});
+      axios.post('http://127.0.0.1:8000/rest-auth/logout/')
+        .then(res => {
+          commit('logout');
+          localStorage.removeItem('access_token');
+          router.push({name: 'home'});
+          console.log(res);
+          alert(res.data.detail);
+        })
+        .catch(() => {
+          alert('로그아웃 실패!');
+        })
     },
     signup(dispatch, signupObj) {
       axios.post('http://127.0.0.1:8000/rest-auth/registration/', signupObj)
@@ -78,7 +87,7 @@ export default new Vuex.Store({
             gender: response.data.gender,
             address: response.data.address
           };
-          alert('로그인 성공!!');
+          // alert('로그인 성공!!');
           commit("loginSuccess", userInfo);
         })
         .catch(() => {

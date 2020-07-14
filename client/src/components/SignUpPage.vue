@@ -5,13 +5,14 @@
     </v-layout>
     <v-stepper v-model="e1" id="signup__stepper">
       <v-stepper-header>
+        <v-divider></v-divider>
         <v-stepper-step :complete="e1 > 1" step="1" color="black">본인인증</v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step :complete="e1 > 2" step="2" color="black">정보수집동의</v-stepper-step>
         <v-divider></v-divider>
         <v-stepper-step :complete="e1 > 3" step="3" color="black">정보입력</v-stepper-step>
         <v-divider></v-divider>
-        <v-stepper-step step="4" color="black">가입완료</v-stepper-step>
+        <!-- <v-stepper-step step="4" color="black">가입완료</v-stepper-step> -->
       </v-stepper-header>
       <v-stepper-items>
         <v-stepper-content step="1">
@@ -127,9 +128,9 @@
             <v-flex xs4></v-flex>
           </v-layout>
         </v-stepper-content>
-        <v-stepper-content step="4">
+        <!-- <v-stepper-content step="4">
           <v-btn color="black" @click.native="e1 = 1">처음으로</v-btn>
-        </v-stepper-content>
+        </v-stepper-content> -->
       </v-stepper-items>
     </v-stepper>
   </v-container>
